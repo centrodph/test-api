@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@faker-js/faker@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-7.6.0.tgz#9ea331766084288634a9247fcd8b84f16ff4ba07"
+  integrity sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1708,6 +1713,11 @@ touch@^3.1.0:
   resolved "https://registry.yarnpkg.com/touch/-/touch-3.1.0.tgz#fe365f5f75ec9ed4e56825e0bb76d24ab74af83b"
   dependencies:
     nopt "~1.0.10"
+
+txtgen@3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/txtgen/-/txtgen-3.0.4.tgz#8328cc9a822875ec6c49489e16d1a7292d39e99d"
+  integrity sha512-15UBmauZ4Ceq3UPEae9gaRo7g1c5AR6qyRRaF9TIXXMTEfCxo1h+fAsgl21Zqvad9gNhvEt0XTGKsTXy2PydeA==
 
 type-is@~1.6.18:
   version "1.6.18"
