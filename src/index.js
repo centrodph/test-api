@@ -1,53 +1,70 @@
 // init project
 var express = require("express");
 var bodyParser = require("body-parser");
+var { faker } = require("@faker-js/faker");
 var app = express();
 var url = String(process.env.HOSTNAME).split("-");
+
+var factor = 1000 * 100;
+var delayFactor = 5000;
+var delayArticleFactor = 50;
+
+let i = 0;
+var preBuild = new Array(factor).fill(1).map(() => {
+  i++;
+  return {
+    id: i,
+    title: faker.lorem.sentence(),
+    data: faker.lorem.paragraphs(5),
+  };
+});
+
+function delay(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // This route processes GET requests to "/"`
 app.get("/", function (req, res) {
+  res.send("<h1>FAKE API</h1>");
+  console.log("Received GET");
+});
+
+app.get("/ids", function (req, res) {
+  let i = 0;
   res.send(
-    '<h1>REST API</h1><p>A REST API starter using Express and body-parser.<br /><br />To test, curl the following and view the terminal logs:<br /><br /><i>curl -H "Content-Type: application/json" -X POST -d \'{"username":"test","data":"1234"}\' https://' +
-      url[2] +
-      ".sse.codesandbox.io/update<i></p>"
+    new Array(factor).fill(1).map((id) => {
+      i++;
+      return i;
+    })
   );
   console.log("Received GET");
 });
 
 app.get("/big-data", function (req, res) {
   let i = 0;
-  res.send(
-    new Array(1000 * 1000).fill(1).map((id) => {
-      i++;
-      return {
-        id: i,
-        data: `test data ${id}`,
-      };
-    })
-  );
+  res.send(preBuild);
   console.log("Received GET");
 });
-function delay(time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
 
 app.get("/big-data-slow", function (req, res) {
   let i = 0;
-  delay(5000).then(() => {
-    res.send(
-      new Array(1000 * 1000).fill(1).map((id) => {
-        i++;
-        return {
-          id: i,
-          data: `test data ${id}`,
-        };
-      })
-    );
+  delay(delayFactor).then(() => {
+    res.send(preBuild);
   });
   console.log("Received slow");
+});
+
+app.get("/article/:id", function (req, res) {
+  let i = 0;
+
+  return {
+    id: i,
+    title: faker.lorem.sentence(),
+    data: faker.lorem.paragraphs(5),
+  };
 });
 
 // Listen on port 8080
