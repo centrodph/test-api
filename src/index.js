@@ -5,7 +5,7 @@ var { faker } = require("@faker-js/faker");
 var app = express();
 var url = String(process.env.HOSTNAME).split("-");
 
-var factor = 1000 * 100;
+var factor = 1000 * 10;
 var delayFactor = 5000;
 var delayArticleFactor = 50;
 
