@@ -68,6 +68,6 @@ app.get("/article/:id", function (req, res) {
 });
 
 console.log('>>', process.env.PORT);
-var listener = app.listen(process.env.PORT || 8080, function () {
+var listener = app.listen(10000, function () {
   console.log("Listening on port " + process.env.PORT || 8080);
 });
