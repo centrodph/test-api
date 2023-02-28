@@ -4,7 +4,7 @@
   "description": "A simple REST API using Express and body-parser",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "set LOCAL_RUN=true && export LOCAL_RUN=true && nodemon src/index.js",
     "start": "node src/index.js"
   },
   "dependencies": {

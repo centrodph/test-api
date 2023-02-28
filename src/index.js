@@ -57,17 +57,21 @@ app.get("/big-data-slow", function (req, res) {
   console.log("Received slow");
 });
 
-app.get("/article/:id", function (req, res) {
+app.get("/article/:articleId", function (req, res, next) {
   let i = 0;
-
-  return {
-    id: i,
-    title: faker.lorem.sentence(),
-    data: faker.lorem.paragraphs(5),
-  };
+  try {
+    if (Number(req.params.articleId) === 9900)
+      throw new Error("Internal Server Error");
+    res.send(preBuild[req.params.articleId - 1]);
+  } catch (err) {
+    next(err);
+  }
 });
 
-console.log('>>', process.env.PORT);
-var listener = app.listen(10000, function () {
-  console.log("Listening on port " + process.env.PORT || 8080);
+const isLocal = !!process.env.LOCAL_RUN;
+const port = isLocal ? 8080 : 10000;
+console.log("isLocal>>", isLocal);
+console.log("port>>", port);
+var listener = app.listen(port, function () {
+  console.log("Listening on port " + port);
 });
