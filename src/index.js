@@ -67,7 +67,7 @@ app.get("/article/:id", function (req, res) {
   };
 });
 
-console.log(process.env);
-var listener = app.listen(443, function () {
-  console.log("Listening on port " + listener.address().port);
+console.log('>>', process.env.PORT);
+var listener = app.listen(process.env.PORT || 8080, function () {
+  console.log("Listening on port " + process.env.PORT || 8080);
 });
